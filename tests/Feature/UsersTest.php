@@ -40,3 +40,25 @@ it('can register user', function() {
 
     $response->assertStatus(201);
 });
+
+it ('can login user', function() {
+    $user = User::factory()->create();
+    
+    $response = $this->postJson('/login', [
+        'phone_number' => $user->phone_number,
+        'password' => 'password',
+    ]);
+
+    $response->assertStatus(200);
+});
+
+it ('cannot login user with unmatched credentials', function() {
+    $user = User::factory()->create();
+    
+    $response = $this->postJson('/login', [
+        'phone_number' => $user->phone_number,
+        'password' => '000000',
+    ]);
+    
+    $response->assertStatus(401);
+});

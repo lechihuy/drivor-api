@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('users')->name('users.')->controller(UserController::class)->group(function() {
     Route::post('/register', 'register')->name('register');
 });
+
+Route::post('/login', [LoginController::class, 'login'])->name('login');
