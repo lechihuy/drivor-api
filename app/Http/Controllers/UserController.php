@@ -16,8 +16,9 @@ class UserController extends Controller
      */
     public function register(RegisterUserRequest $request)
     {
-        $request->password = bcrypt($request->password);
-        $user = User::create($request->validated());
+        $data = $request->validated();
+        $data['password'] = bcrypt($data['password']);
+        $user = User::create($data);
 
         return response()->json(['user' => $user,], 201);
     }
