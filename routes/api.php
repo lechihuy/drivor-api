@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RecruitmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,5 @@ Route::prefix('users')->name('users.')->controller(UserController::class)->group
 });
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+Route::post('/recruitments/apply', [RecruitmentController::class, 'apply'])->name('recruiments.apply');
